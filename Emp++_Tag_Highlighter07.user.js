@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name Emp++ Tag Highlighter 0.7
-// @version 0.7.5b
+// @version 0.7.6
 // @description highlights liked/disliked tags
 // @grant GM_getValue
 // @grant GM_setValue
@@ -24,6 +24,8 @@
 // ==/UserScript==
 
 // Changelog:
+// version 0.7.6
+// - Update import/export to utilize file system directly rather than manual copy/pasting.
 // Version 0.7.5b
 // - Cleaning up
 // Version 0.7.5
@@ -350,15 +352,15 @@ function runScript(){
 		"</div>" +
 		// Import/Export panel
 		"<div class='s-conf-page' id='s-conf-import-export'>" +
+		"<div id='import_export_status'></div>" +
 		"<h3>Export Settings</h3>" +
 		"<hr>" +
-		"<p>To backup your settings, copy below text to a local file. You can import these settings in the Import Settings area.</p>" + 
-		"<textarea id='export-settings-textarea' rows='10' cols='100' readonly></textarea><br><br>" +
-		"<br>" +
+		"<p>To backup your settings to file, click Export Settings button below.</p>" + 
+		"<a id='export-settings-button'>Export Settings</a>" +
+		"<br><br>" +
 		"<h3>Import Settings</h3>" +
 		"<hr><br>" +
-		"<textarea id='import-settings-textarea' rows='10' cols='100' placeholder='Paste your exported settings here.'></textarea><br><br>" +
-		"<button id='import-settings-button'>Import Settings</button>" +
+		"<input id='import-settings-file-button' type='file' accept='application/json'></input>" +
 		"</div>" +
 		// End Import/Export 
 		"</form>" +
@@ -395,7 +397,7 @@ function runScript(){
 		".s-conf-buttons{margin-top:8px; width:100%; text-align:center;}" +
 		".s-conf-page{display:none;}" +
 		".s-conf-page.s-selected{display:block;}" +
-		".s-conf-page input{vertical-align:text-bottom;}" +
+		".s-conf-page input{vertical-align:text-bottom; padding: 0; background: initial;}" +
 		"#s-conf-general label{cursor:pointer;}" +
 		"#s-conf-general img{margin-bottom:10px; display:none;}" +
 		"#s-conf-general a:hover+img{display:block;}" +
@@ -484,6 +486,11 @@ function runScript(){
 		".s-useless-tags{display:none;}" +
 		".s-useless-toggle{font-weight:bold; cursor:pointer;}" +
 		".s-useless-desc{clear:both; padding:8px 0 8px 15px;}" +
+		".status {  color: black;  background: white;  padding: 5px 10px;  line-height: 30px;  border-radius: 5px;  display: none;}" +
+		".error { color: white;  background: var(--red);}" +
+		".success { color: white; background: var(--green);}" +
+		"#s-conf-import-export #export-settings-button {border: solid #ccc 1px; background: #eee; color: #333; padding: 0 3px 0 3px;}" +
+		"#s-conf-import-export #export-settings-button:hover {background: #ccc; cursor: pointer; text-decoration:none;}" +
 		"</style>";
 		let userInfoID = "#nav_userinfo"; // The selector that Empornium uses
 		if ($j(userInfoID).length < 1) {
@@ -1036,51 +1043,76 @@ function runScript(){
 		function refreshUI() {
 		  $j('#s-conf-background').remove();
 		  initConfig($j(configHTML).prependTo("body"));
-		}
+		} 
 		
 	  // Import/export settings related code
 	  function importSettings(rawSettings) {
 		try {
-		  const trimmedSettings = rawSettings.trim();
-		  if (trimmedSettings.length === 0) {
-			throw new Error('Settings empty.');
-		  }
-		  const importedSettings = JSON.parse(trimmedSettings);
-		  // setValue("spyderSettings", trimmedSettings);
-		  settings = importedSettings;
-		  saveSettings();
-		} catch (e) {
-		  throw e;
-		}
-	  } 
-		
-		$j('#import-settings-button').on('click', (e) => {
-		  e.preventDefault();
-		  try {
-			const textArea = $j('#import-settings-textarea');
-			
-			importSettings(textArea.val());
-			
-			// Refresh UI with new settings.
+			if (!rawSettings) {
+				displayStatus("error", "Error: Empty settings file.");
+				throw new Error('Settings empty.');
+			}
+			if (!rawSettings.useLovedTags) {
+				displayStatus("error", "Error: Invalid settings file.");
+				throw new Error('Invalid Tag Highlighter settings file.');
+			}
+			settings = rawSettings;
+			saveSettings();
 			refreshUI();
 			displayStatus("success", "Imported settings successfully.");
-		  } catch (e) {
-			displayStatus("error", `Unable to import settings: ${e.message}`)
-		  }
-		  
-		});
-
-		// Populate export settings textarea with settings
-		const ta = document.querySelector('#export-settings-textarea');
-		ta.textContent = JSON.stringify(getSettings());
-	  
-		// Escape closes ETH
-		$j(document).keyup(function(e) {
-			if (e.key === "Escape") {
-			  base.remove();
+		} catch (e) {
+			displayStatus("error", "Error: Unable to import settings file.");
+		  	throw e;
 		}
-});
-	}
+	  }
+
+	  function configureExportSettingsButton() {
+		const exportSettingsButton = $j('#export-settings-button');
+		const stringifiedSettings = JSON.stringify(getSettings(), null, 4);
+		const blob = new Blob([stringifiedSettings], {
+		  type: 'application/json'
+		});
+		var url = URL.createObjectURL(blob);
+		const date = new Date();
+		exportSettingsButton.attr('href', url);
+		exportSettingsButton.attr('download', `tag-highlighter-settings-${date.toISOString()}.json`);
+	  }
+
+	  function configureImportSettings() {
+		const fileInput = $j('#import-settings-file-button');
+		fileInput.on('change', () => {
+			if (fileInput[0].files.length > 0) {
+			  reader = new FileReader();
+			  reader.addEventListener("load", () => {
+				try {
+				  importSettings(JSON.parse(reader.result));
+				} catch (e) {
+					displayStatus('error', 'Error: Unable to import settings file.');
+					throw new Error(e);
+				}
+			  });
+		  
+			  if (fileInput[0].files[0].type !== 'application/json') {
+				displayStatus('error', 'Error: File is not JSON.');
+			  } else {
+				reader.readAsText(fileInput[0].files[0]);
+			  }
+			} else {
+			  displayStatus("Error: No file was selected.");
+			}
+		  })
+	  }
+
+	  configureExportSettingsButton();
+	  configureImportSettings();
+	  
+	  // Escape closes ETH	
+	  $j(document).keyup(function(e) {
+		if (e.key === "Escape") {
+		  base.remove();
+		}
+	});
+}
 
 	//General Purpose Funcitons
 	function addTerribleTagElement(type, holder, tag){
