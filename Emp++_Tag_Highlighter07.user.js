@@ -26,6 +26,8 @@
 // Changelog:
 // version 0.7.6
 // - Update import/export to utilize file system directly rather than manual copy/pasting.
+// Version 0.7.5c
+// - Fixing some bugs that appear after the cleaning.
 // Version 0.7.5b
 // - Cleaning up
 // Version 0.7.5
@@ -105,6 +107,29 @@ function runScript(){
 		//handle upgrade
 	}
 
+    //import tags from pre-v0.4 ETH
+    if(!settings.tags){
+        settings.tags = {
+            good : getValue("good_tags", "").split(' '),
+			loved : getValue("loved_tags", "").split(' '),
+            performer : getValue("performer_tags", "").split(' '),
+			loveperf : getValue("loveperf_tags", "").split(' '),
+			newperf : getValue("newperf_tags", "").split(' '),
+			amateur : getValue("amateur_tags", "").split(' '),
+			loveamat : getValue("loveamat_tags", "").split(' '),
+			maleperf : getValue("maleperf_tags", "").split(' '),
+			lovemale : getValue("lovemale_tags", "").split(' '),
+			likesite : getValue("likesite_tags", "").split(' '),
+			lovesite : getValue("lovesite_tags", "").split(' '),
+            disliked : getValue("bad_tags", "").split(' '),
+            hated : getValue("hated_tags", "").split(' '),
+            terrible : getValue("terrible_tags", "").split(' '),
+            useless : getValue("useless_tags", "").split(' ')
+        };
+        saveSettings();
+    }	
+	
+	
 	var configHTML =
 		"<div id='s-conf-background'>" +
 		"<div id='s-conf-wrapper'>" +
