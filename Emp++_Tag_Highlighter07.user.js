@@ -84,8 +84,6 @@ function setupTagDropdown() {
 		}
 	`;
 
-	//const getTags = () => ['blowjob','hardcore','natural.tits','doggy.style','1080p','hd','cowgirl','brunette','missionary','big.tits','reverse.cowgirl','1on1','blonde','mp4','facial','cumshot','anal','720p','straight','cunnilingus','small.tits','shaved','tattoo','deepthroat','masturbation','handjob','cum.in.mouth','oral','pov','fake.tits','fingering','big.ass','solo','fetish','teen','stockings','amateur','interracial','high.heels','lingerie','creampie','asian','threesome','milf','sd','trimmed','big.natural.tits','lesbian','full.hd','big.cock','petite','indoor','toys','dildo','titfuck','sideways','kissing','standing.doggy','480p','rimming','cum.on.tits','se7enseas','long.hair','cum.swallowing','ass.to.mouth','60.fps','no.condom','redhead','shaved.pussy','bubble.butt','european','latina','japanese','medium.tits','double.penetration','ball.sucking','mature','anal.doggy','jav','face.fuck','ffm','softcore','open.mouth.facial','2021','virtual.reality','outdoor','pussy.fingering','transsexual','images','69','bdsm','male.on.female.cunnilingus','femdom','2020','big.fake.tits','black.hair','censored','piercings','female.completion','white.female.black.male','180.degrees','small.natural.tits','anal.reverse.cowgirl','all.girl','big.black.cock','spooning','hairy.pussy','gape','transgirl','face.sitting','incest','anal.fingering','squirting','anal.missionary','2160p','vibrator','2018','female.on.female.cunnilingus','clips4sale.com','barefoot','bondage','tease','mmf','no.sex','gagging','short.hair','glasses','picset','homemade','nude','bbw','oil','manyvids.com','vaginal.sex','dirty.talk','pussy.rubbing','cum.on.ass','some.pov','gangbang','orgy','anal.cowgirl','piss','slim','pierced.belly.button','tanlines','anal.gape','skinny','pov.blowjob','black','pussy.to.mouth','brazzers.com','oculus.rift','jerk.off.instruction','hitachi.magic.wand','high.heels.stay.on','condom','prone.bone','russian','pierced.nipples','socks','spanking','2019','anal.creampie','hairy','female.rimming.male','cum.on.pussy','uncircumcised.cock','pantyhose','analvids.com','ebony','pale','strap.on','bed','british','orgasm','lightly.tattooed','striptease','humiliation','curvy','x265','blue.eyes','roleplay','540p','incest.roleplay','bedroom','mega.pack','male.rimming.female','bikini','fishnets','footjob','h.265','eye.contact','non.nude','handjob.to.completion','cum.on.stomach','rough.sex','chubby','closeup','male.on.transgirl','caucasian','buttplug','tit.sucking','boots','anal.sideways','tribbing','spit.roast','siterip','big.areolas','anal.dildo','feet','evilangel.com','schoolgirl','solo.masturbation','female.rimming.female','shoes.on','uncensored','girl.girl','blowjob.only','taboo','naughtyamerica.com','cosplay','athletic.body','male.completion','re.encoded','huge.tits','realitykings.com','gonzo','toy.in.ass','foot.fetish','small.ass','american','double.anal.penetration','pigtails','couch','voluptuous','x265.reencode','shower','bangbros.com','panties','older.younger','blowjob.after.cumshot','panties.to.side','outie.pussy','phat.ass.white.girl','clit.rubbing','black.cock','ponytail','czech','h.264','garter.belt','double.blowjob','female.on.female.face.sitting','innie.pussy','massage','huge.natural.tits','latex','2.girl.blowjob','black.female.white.male','medium.natural.tits','anal.play','samsung.gear.vr','foursome','pornhub.com','public','4k.ultra.hd','eastern.european','dildo.fucking','ass.worship','dildo.sucking','classic','female.orgasm','riding','2017','piledriver','ultra.hd','multiple.cumshots','kneeling.blowjob','teamskeet.com','2000s','step.incest.roleplay','fisting','compilation','webcam','cum.on.tongue','breast.play','cuckold','cheating','bottomless','female.masturbation','cum.swapping','onlyfans.com','interview','jerk.off.encouragement','under.knee.socks','german','tiny.tits','oculus.go','topless','split.scenes','pornmegaload.com','female.kissing.female','thick','domination','bukkake','posing','family.roleplay','voyeur','hair.pulling','thong','choking','images.only','white','the.rat.bastards','ball.gag','pierced.tongue','rough','neon.hair','hevc.x265','kink.com','stand.and.carry','lower.back.tattoo','femdom.pov','sloppy.blowjob','stepmother','partially.clothed','mother.son','medium.ass','moderately.tattooed','rope.bondage','oral.creampie','brown.eyes','wmv','chaturbate.com','freeleech','pov.only','cleavage','fishnet.stockings','heavily.tattooed','360p','over.knee.socks','dress','hevc.reencode','step.sister','fake.cum','piss.in.mouth','french','collar','fondling','skirt','sex.on.bed','htc.vive','solo.female','living.room','anal.piledriver','bathtub','other','nipple.licking','piss.drinking','big.tits.worship','wet','female.on.male.face.sitting','undressing','submission','blowjob.to.completion','mofos.com','pregnant','ladyboy','standing.missionary','group','bouncing.tits','19.years.old','choker','blowbang','no.face','spit','corset','young','painted.fingernails','multiple.facials','scissoring','school.uniform','booty.shorts','18.years.old','miniskirt','solo.only','brazilian','smoking','x264','dark.hair','bathroom','black.stockings','2016','gloves','anal.fisting','airtight','pierced.clit','alt','pussy.spreading','3d','step.daughter','paysite','ass.to.pussy','plaid.skirt','clothed.female.naked.male','knee.high.boots','supine.blowjob','nipple.play','pegging','sex.on.sofa','virtual.sex','scat','bad.peers','mydirtyhobby.com','ass.spreading','spread.legs','blindfold','denim.shorts','parody','stand.up.fuck','cum.eating','mick.blue','saggy.tits','mike.adriano','dvdr','pool','transgirl.on.male','foot.worship','ddfnetwork.com','2on1','tease.and.denial','throatfucking','asian.female.white.male','rape.roleplay','myfreecams.com','licking','goddess.worship','30.fps','hoop.earrings','drooling','1920p','mother','braces','fucking.after.cumshot','uniform','office','anal.prone.bone','kitchen','hormone.tits','female.to.female.69','couples.fantasies','mkv','no.toys','hypnosis','tanned','sneakers','asian.american','couple','21sextury.com','verbal.humiliation','nurse','pov.missionary','booty.shaking','scoreland.com','puffy.nipples','medium.skin','bimbo','hentai','2015','gloryhole','clothed.sex','90s','dildo.riding','50.fps','older.male.younger.female','slave','ass.smacking','dp.cowgirl','mmmf','bra.on','moaning','manuel.ferrara','slapping','pov.doggy.style','canadian','soles','double.vaginal.penetration','older.female.younger.male','panties.on','step.brother','swimsuit','1440p','oculus.quest.2','behind.the.scenes','flexible','chastity','ass.to.other.girls.mouth','2014','costume','daddy.talk','newsensations.com'];
-
 	function addGlobalStyle(css) {
 		let head, style;
 		head = document.getElementsByTagName('head')[0];
@@ -116,13 +114,68 @@ function setupTagDropdown() {
 
 	const debouncedAddTagMenu = debounce(removeAndAddTagMenu, 250);
 
+	const isTagMenuOpen = () => !!document.getElementById('tag-highlighter-tag-menu');
+
 	function addInputEventHandlers(inputEl) { // need to do this for all input els.
+
+		// Set up eventing for the tag menu
+		document.body.addEventListener('keydown', (evt) => {
+
+			if (isTagMenuOpen && evt.key.toLowerCase() === 'enter') {
+				evt.preventDefault();
+
+				const currentValues = inputEl.value.trim().split(' ');
+				if (!currentValues.includes(document.activeElement.innerText)) {
+					currentValues[currentValues.length - 1] = `${document.activeElement.innerText} `;
+					inputEl.value = currentValues.join(' ');
+					tagMenu.remove();
+					inputEl.focus();
+				}
+			}
+
+			if (isTagMenuOpen() && evt.key === 'ArrowUp' || evt.key === 'ArrowDown') {
+				// override default scrolling for arrow up/down on body.
+				evt.preventDefault();
+				evt.stopPropagation();
+
+				if (isTagMenuOpen() && document.activeElement.tagName.toLowerCase() === 'li') {
+					const curActiveEl = document.activeElement;
+
+					if (curActiveEl.tabIndex === 0 && evt.key === 'ArrowUp') {
+						curActiveEl.style.backgroundColor = null;
+						inputEl.focus();
+						return;
+					}
+
+					if (curActiveEl.tabIndex === 9 && evt.key === 'ArrowUp') {
+						curActiveEl.style.backgroundColor = null;
+						curActiveEl.previousSibling.focus();
+						curActiveEl.previousSibling.style.backgroundColor = '#ccc';
+						return;
+					}
+						
+					if (curActiveEl.tabIndex !== 9) {
+						curActiveEl.style.backgroundColor = null;
+						const whichSibling = evt.key === 'ArrowDown' ? 'nextSibling' : 'previousSibling';
+						document.activeElement[whichSibling].focus();
+						document.activeElement.style.backgroundColor = '#ccc';
+					}
+				} else {
+					tagMenu.firstChild.focus();
+					document.activeElement.style.backgroundColor = '#ccc';
+				}
+			}
+		});
+		
+
 		inputEl.addEventListener('keyup', (evt) => {
 			if (!evt.target.value) {
 				tagMenu.remove();
 				return;
 			}
-			debouncedAddTagMenu(evt);
+			if (evt.key !== 'ArrowUp' && evt.key !== 'ArrowDown') {
+				debouncedAddTagMenu(evt);
+			} else {}
 		});
 	}
 
@@ -133,13 +186,6 @@ function setupTagDropdown() {
 	}
 
 	const getTags = async (txt) => {
-		// Check cache first.
-		// allSmilies = GM_getValue('sm-all-smilies');
-		// if (allSmilies) {
-		//   return Promise.resolve(JSON.parse(allSmilies).smilies.smiley);
-		// }
-	  
-		// Get all smilies and cache.
 		return new Promise((resolve, reject) => {
 		  GM_xmlhttpRequest({
 			url: `/tags.php?action=autocomplete&name=${txt}`,
@@ -159,10 +205,11 @@ function setupTagDropdown() {
 			return Promise.resolve(null);
 		}
 		return getTags(searchText).then(tags => {
-			return tags.map(tag => {
+			return tags.map((tag, i) => {
 				const tagName = tag[0];
 				const li = document.createElement('li');
 				li.classList.add('tag-highlighter-tag-item');
+				li.tabIndex = i;
 				li.innerText = tagName;
 				li.addEventListener('click', event => {
 					// replace last value with clicked value
@@ -1279,12 +1326,19 @@ function runScript(){
 	  
 		// Escape closes ETH
 		$j(document).keyup(function(e) {
-			if (e.key === "Escape") {
-			  base.remove();
-		}
-});
+			const tagMenu = document.getElementById('tag-highlighter-tag-menu');
 
-		const tagDropdown = setupTagDropdown();
+			if (e.key === "Escape") {
+				if (tagMenu) {
+					tagMenu.remove();
+					return;
+				}
+
+			  	base.remove();
+			}
+		});
+
+		const	 tagDropdown = setupTagDropdown();
 		tagDropdown.init(document.getElementById('s-conf-add-loved'));
 	}
 
