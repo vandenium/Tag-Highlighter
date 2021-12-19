@@ -60,7 +60,7 @@
 // - few size changes to fit all in the config window
 
 function setupTagDropdown() {
-	
+
 	let inputElement;
 	let tagMenu;
 
@@ -94,7 +94,7 @@ function setupTagDropdown() {
 		head.appendChild(style);
 	}
 
-	function createStyleSheet () {
+	function createStyleSheet() {
 		addGlobalStyle(css);
 	}
 
@@ -153,7 +153,7 @@ function setupTagDropdown() {
 						curActiveEl.previousSibling.style.backgroundColor = '#ccc';
 						return;
 					}
-						
+
 					if (curActiveEl.tabIndex !== 9) {
 						curActiveEl.style.backgroundColor = null;
 						const whichSibling = evt.key === 'ArrowDown' ? 'nextSibling' : 'previousSibling';
@@ -166,7 +166,7 @@ function setupTagDropdown() {
 				}
 			}
 		});
-		
+
 
 		inputEl.addEventListener('keyup', (evt) => {
 			if (!evt.target.value) {
@@ -175,7 +175,7 @@ function setupTagDropdown() {
 			}
 			if (evt.key !== 'ArrowUp' && evt.key !== 'ArrowDown') {
 				debouncedAddTagMenu(evt);
-			} else {}
+			} else { }
 		});
 	}
 
@@ -187,18 +187,18 @@ function setupTagDropdown() {
 
 	const getTags = async (txt) => {
 		return new Promise((resolve, reject) => {
-		  GM_xmlhttpRequest({
-			url: `/tags.php?action=autocomplete&name=${txt}`,
-			onload: (responseObject) => {
-				if (responseObject && responseObject.response) {
-					resolve(JSON.parse(responseObject.response)[1]);
-				}
-			},
-			oneerror: () => reject(new Error('onerror')),
-			onabort: () => reject(new Error('abort')),
-		  });
+			GM_xmlhttpRequest({
+				url: `/tags.php?action=autocomplete&name=${txt}`,
+				onload: (responseObject) => {
+					if (responseObject && responseObject.response) {
+						resolve(JSON.parse(responseObject.response)[1]);
+					}
+				},
+				oneerror: () => reject(new Error('onerror')),
+				onabort: () => reject(new Error('abort')),
+			});
 		});
-	  };
+	};
 
 	function getTagElements(searchText) {
 		if (!searchText.length) {
@@ -216,14 +216,14 @@ function setupTagDropdown() {
 					const curValue = inputElement.value.trim();
 					const curValueArray = curValue.split(' ');
 					const lastTextValue = curValueArray.at(-1);
-	
+
 					// if last item is already in list of tags, append new item, else replace
 					if (tags.find(tag => tag[0] === lastTextValue)) {
 						curValueArray.push(event.target.innerText);
 					} else {
 						curValueArray[curValueArray.length - 1] = event.target.innerText;
 					}
-					
+
 					inputElement.value = curValueArray.reduce((prev, cur) => {
 						return `${prev} ${cur}`;
 					}, '').trim();
@@ -232,17 +232,17 @@ function setupTagDropdown() {
 				return li;
 			});
 		});
-		
+
 	}
 
 	if (!Array.prototype.take) {
 		Array.prototype.take = function (n) {
-			return this.slice(0,n);
+			return this.slice(0, n);
 		}
 	}
 
 	const getLastTagStr = (str) => str.length > 0 ? str.split(' ').at(-1) : undefined;
-	
+
 	async function createTagMenu(inputEl) {
 		const parent = document.createElement('ul');
 		parent.id = 'tag-highlighter-tag-menu';
@@ -263,7 +263,7 @@ function setupTagDropdown() {
 		if (tagMenu) {
 			tagMenu.remove();
 		}
-		
+
 		if (newTagMenu) {
 			tagMenu = newTagMenu;
 			targetEl.parentElement.append(newTagMenu);
@@ -273,7 +273,7 @@ function setupTagDropdown() {
 	function updateMenu(txt) {
 		alert(txt);
 	}
-	
+
 
 	return {
 		init,
@@ -281,84 +281,84 @@ function setupTagDropdown() {
 	}
 }
 
-function runScript(){
+function runScript() {
 	var $j = $.noConflict(true);
 
 	setupTagDropdown();
 
 	var defaults = {
-		majorVersion : 0.7,
-	//Options
-		truncateTags : true,
-	//Browse Page Options
-		usePercentBar : false,
-		useTorrentOpacity : false,
-		useTorrentColoring : false,
-	//Tag types to use
-		useGoodTags : false,
-		useLovedTags : false,
-		usePerformerTags : false,
-		useLoveperfTags : false,
-		useNewperfTags : false,
-		useAmateurTags : false,
-		useLoveamatTags : false,
-		useMaleperfTags : false,
-		useLovemaleTags : false,
-		useLikesiteTags : false,
-		useLovesiteTags : false,
-		useDislikedTags : false,
-		useHatedTags : false,
-		useTerribleTags : false,
-		useUselessTags : false,
-	//Tag Button Options
-		buttonGoodTags : false,
-		buttonPerformerTags : false,
-		buttonNewperfTags : false,
-		buttonAmateurTags : false,
-		buttonMaleperfTags : false,
-		buttonLikesiteTags : false,
-		buttonDislikedTags : false,
+		majorVersion: 0.7,
+		//Options
+		truncateTags: true,
+		//Browse Page Options
+		usePercentBar: false,
+		useTorrentOpacity: false,
+		useTorrentColoring: false,
+		//Tag types to use
+		useGoodTags: false,
+		useLovedTags: false,
+		usePerformerTags: false,
+		useLoveperfTags: false,
+		useNewperfTags: false,
+		useAmateurTags: false,
+		useLoveamatTags: false,
+		useMaleperfTags: false,
+		useLovemaleTags: false,
+		useLikesiteTags: false,
+		useLovesiteTags: false,
+		useDislikedTags: false,
+		useHatedTags: false,
+		useTerribleTags: false,
+		useUselessTags: false,
+		//Tag Button Options
+		buttonGoodTags: false,
+		buttonPerformerTags: false,
+		buttonNewperfTags: false,
+		buttonAmateurTags: false,
+		buttonMaleperfTags: false,
+		buttonLikesiteTags: false,
+		buttonDislikedTags: false,
 	};
 
 	var settings = getSettings();
 
 	settings = $j.extend(true, defaults, settings);
 
-	if(settings.majorVersion < defaults.majorVersion){
+	if (settings.majorVersion < defaults.majorVersion) {
 		settings.majorVersion = defaults.majorVersion;
 		saveSettings();
 		//handle upgrade
 	}
 
-    //import tags from pre-v0.4 ETH
-    if(!settings.tags){
-        settings.tags = {
-            good : getValue("good_tags", "").split(' '),
-			loved : getValue("loved_tags", "").split(' '),
-            performer : getValue("performer_tags", "").split(' '),
-			loveperf : getValue("loveperf_tags", "").split(' '),
-			newperf : getValue("newperf_tags", "").split(' '),
-			amateur : getValue("amateur_tags", "").split(' '),
-			loveamat : getValue("loveamat_tags", "").split(' '),
-			maleperf : getValue("maleperf_tags", "").split(' '),
-			lovemale : getValue("lovemale_tags", "").split(' '),
-			likesite : getValue("likesite_tags", "").split(' '),
-			lovesite : getValue("lovesite_tags", "").split(' '),
-            disliked : getValue("bad_tags", "").split(' '),
-            hated : getValue("hated_tags", "").split(' '),
-            terrible : getValue("terrible_tags", "").split(' '),
-            useless : getValue("useless_tags", "").split(' ')
-        };
-        saveSettings();
-    }	
-	
-	
+	//import tags from pre-v0.4 ETH
+	if (!settings.tags) {
+		settings.tags = {
+			good: getValue("good_tags", "").split(' '),
+			loved: getValue("loved_tags", "").split(' '),
+			performer: getValue("performer_tags", "").split(' '),
+			loveperf: getValue("loveperf_tags", "").split(' '),
+			newperf: getValue("newperf_tags", "").split(' '),
+			amateur: getValue("amateur_tags", "").split(' '),
+			loveamat: getValue("loveamat_tags", "").split(' '),
+			maleperf: getValue("maleperf_tags", "").split(' '),
+			lovemale: getValue("lovemale_tags", "").split(' '),
+			likesite: getValue("likesite_tags", "").split(' '),
+			lovesite: getValue("lovesite_tags", "").split(' '),
+			disliked: getValue("bad_tags", "").split(' '),
+			hated: getValue("hated_tags", "").split(' '),
+			terrible: getValue("terrible_tags", "").split(' '),
+			useless: getValue("useless_tags", "").split(' ')
+		};
+		saveSettings();
+	}
+
+
 	var configHTML =
 		"<div id='s-conf-background'>" +
 		"<div id='s-conf-wrapper'>" +
 		"<h1>Empornium++Tag Highlighter Settings</h1>" +
 		"<div id='s-conf-status'></div>" +
-		
+
 		// Tabs
 		"<div class='tab-row-container'" +
 		"<ul class='tab-row'>" +
@@ -372,7 +372,7 @@ function runScript(){
 		"<li data-page='s-conf-loveamat-tags'><a class='s-conf-tab'>Loved Amateur Tags</a></li>" +
 		"<li data-page='s-conf-maleperf-tags'><a class='s-conf-tab'>Male Performer Tags</a></li>" +
 		"</ul>" +
-		"</div>"+
+		"</div>" +
 		"<div class='tab-row-container'" +
 		"<ul class='tab-row'>" +
 		"<li data-page='s-conf-lovemale-tags'><a class='s-conf-tab'>Loved Male Performer Tags</a></li>" +
@@ -385,7 +385,7 @@ function runScript(){
 		"<li data-page='s-conf-import-export'><a class='s-conf-tab'>Import/Export</a></li>" +
 		"<li><a class='s-conf-tab' data-page=''></a></li>" +
 		"</ul>" +
-		"</div>"+
+		"</div>" +
 		// End Tabs
 		"<div id='s-conf-content'>" +
 		"<form id='s-conf-form'>" +
@@ -602,7 +602,7 @@ function runScript(){
 		"<div class='s-conf-page' id='s-conf-import-export'>" +
 		"<h3>Export Settings</h3>" +
 		"<hr>" +
-		"<p>To backup your settings, copy below text to a local file. You can import these settings in the Import Settings area.</p>" + 
+		"<p>To backup your settings, copy below text to a local file. You can import these settings in the Import Settings area.</p>" +
 		"<textarea id='export-settings-textarea' rows='10' cols='100' readonly></textarea><br><br>" +
 		"<br>" +
 		"<h3>Import Settings</h3>" +
@@ -723,218 +723,219 @@ function runScript(){
 		".s-tag.s-good .s-button.s-add-loved, .s-tag.s-performer .s-button.s-add-loveperf, .s-tag.s-amateur .s-button.s-add-loveamat, .s-tag.s-maleperf .s-button.s-add-lovemale, .s-tag.s-likesite .s-button.s-add-lovesite, .s-tag.s-disliked .s-button.s-add-hated, .s-tag.s-useless .s-button.s-remove-useless{display:block}" +
 		".s-tag.s-disliked .s-button.s-add-terrible{display:block}" +
 		".s-tag.s-disliked .s-button.s-add-useless{display:block}" +
-	(settings.truncateTags ?
-		 (".s-tag a{max-width:100px;overflow:hidden;text-overflow:ellipsis;}" +
-		  ".s-tag.s-good a,.s-tag.s-performer a, .s-tag.s-useless a, .s-tag.s-terrible a{max-width:140px;}" +
-		  ".s-tag.s-disliked a {max-width:120px;}" +
-		  ".s-tag.s-staff a{max-width:64px;}" +
-		  ".s-tag.s-good.s-staff a,.s-tag.s-performer.s-staff a, .s-tag.s-useless.s-staff a, .s-tag.s-terrible.s-staff a{max-width:104px;}" +
-		  ".s-tag.s-staff.s-disliked a{max-width:84px;}")
-		 : "") +
+		(settings.truncateTags ?
+			(".s-tag a{max-width:100px;overflow:hidden;text-overflow:ellipsis;}" +
+				".s-tag.s-good a,.s-tag.s-performer a, .s-tag.s-useless a, .s-tag.s-terrible a{max-width:140px;}" +
+				".s-tag.s-disliked a {max-width:120px;}" +
+				".s-tag.s-staff a{max-width:64px;}" +
+				".s-tag.s-good.s-staff a,.s-tag.s-performer.s-staff a, .s-tag.s-useless.s-staff a, .s-tag.s-terrible.s-staff a{max-width:104px;}" +
+				".s-tag.s-staff.s-disliked a{max-width:84px;}")
+			: "") +
 		".s-useless-tags{display:none;}" +
 		".s-useless-toggle{font-weight:bold; cursor:pointer;}" +
 		".s-useless-desc{clear:both; padding:8px 0 8px 15px;}" +
 		"</style>";
-		let userInfoID = "#nav_userinfo"; // The selector that Empornium uses
-		if ($j(userInfoID).length < 1) {
+	let userInfoID = "#nav_userinfo"; // The selector that Empornium uses
+	if ($j(userInfoID).length < 1) {
 		userInfoID = "#nav_useredit"; // // The selector that Pornbay uses
 	}
 	(function init() {
 		// add stylesheet
 		$j(stylesheet).appendTo("head");
 		var test = $j('#torrent_table tbody tr.torrent.rowb').css('background-color');
-		$j('#torrent_table').css('background-color',test);
+		$j('#torrent_table').css('background-color', test);
 
 		// add config link
-		 $j("<li class='brackets' title=\"Change Empornium++Tag Highlighter's settings.\"><a href='#'>Tag-Config</a></li>").insertAfter(userInfoID).on("click", function(e){			e.preventDefault();
+		$j("<li class='brackets' title=\"Change Empornium++Tag Highlighter's settings.\"><a href='#'>Tag-Config</a></li>").insertAfter(userInfoID).on("click", function (e) {
+			e.preventDefault();
 			initConfig($j(configHTML).prependTo("body"));
 		});
 
-		if(/torrents\.php/.test(window.location.href)){
+		if (/torrents\.php/.test(window.location.href)) {
 			// torrent details
-			if(/\bid\=/.test(window.location.href)){
+			if (/\bid\=/.test(window.location.href)) {
 				processDetailsPage();
 			}
 			// torrents overview
-			else{
+			else {
 				processBrowsePage(".torrent", "torrent");
 			}
 		}
 		// collage details/overview
-		else if(/collages\.php/.test(window.location.href)){
+		else if (/collages\.php/.test(window.location.href)) {
 			processBrowsePage(".rowa, .rowb", "collage");
 		}
 		// subscribed collages with new additions
-		else if(/userhistory\.php(.+)\bsubscribed_collages/.test(window.location.href)){
+		else if (/userhistory\.php(.+)\bsubscribed_collages/.test(window.location.href)) {
 			processBrowsePage(".torrent", "torrent");
 		}
 		// user details
-		else if(/user\.php(.+)\bid\=/.test(window.location.href)){
+		else if (/user\.php(.+)\bid\=/.test(window.location.href)) {
 			processBrowsePage(".torrent", "torrent");
 		}
 		// top 10
-		else if(/top10\.php/.test(window.location.href)){
+		else if (/top10\.php/.test(window.location.href)) {
 			processBrowsePage(".torrent", "torrent");
 		}
-		else if(/bookmarks\.php/.test(window.location.href)){
+		else if (/bookmarks\.php/.test(window.location.href)) {
 			processBrowsePage(".rowa, .rowb", "request");
 		}
-		else if(/requests\.php/.test(window.location.href)){
-			if(/\bid\=/.test(window.location.href)){
+		else if (/requests\.php/.test(window.location.href)) {
+			if (/\bid\=/.test(window.location.href)) {
 				processDetailsPage();
 			}
-			else{
+			else {
 				processBrowsePage(".rowa, .rowb", "request");
 			}
 		}
 	}());
 
-	function processBrowsePage(rowSelector, type){
+	function processBrowsePage(rowSelector, type) {
 		var rows = $j(rowSelector);
 
-		rows.each(function(i, row){
+		rows.each(function (i, row) {
 			row = $j(row);
 			var tagContainer = row.find(".tags").addClass("s-browse-tag-holder").css({
-				"line-height" : "18px"
+				"line-height": "18px"
 			}),
 				totalTagNum = tagContainer.find("a").length,
 				goodNum = 0, badNum = 0, terribleNum = 0, uselessNum = 0;
 
-			if(!totalTagNum){
+			if (!totalTagNum) {
 				return;
 			}
-			tagContainer.find("a").each(function(i, tagLink){
+			tagContainer.find("a").each(function (i, tagLink) {
 				tagLink = $j(tagLink);
 				var tag = tagLink.text();
 
 				tagLink = tagLink.wrap("<span>").parent().addClass("s-tag");
 				tag = tag.toLowerCase();
 
-				if(settings.useLovedTags && isTag(settings.tags.loved, tag)){
+				if (settings.useLovedTags && isTag(settings.tags.loved, tag)) {
 					goodNum++;
 					tagLink.addClass("s-loved");
 				}
 
-				else if(settings.useGoodTags && isTag(settings.tags.good, tag)){
+				else if (settings.useGoodTags && isTag(settings.tags.good, tag)) {
 					goodNum++;
 					tagLink.addClass("s-good");
 				}
-				else if(settings.useLoveperfTags && isTag(settings.tags.loveperf, tag)){
+				else if (settings.useLoveperfTags && isTag(settings.tags.loveperf, tag)) {
 					goodNum++;
 					tagLink.addClass("s-loveperf");
 				}
-				else if(settings.usePerformerTags && isTag(settings.tags.performer, tag)){
+				else if (settings.usePerformerTags && isTag(settings.tags.performer, tag)) {
 					goodNum++;
 					tagLink.addClass("s-performer");
 				}
-				else if(settings.useNewperfTags && isTag(settings.tags.newperf, tag)){
+				else if (settings.useNewperfTags && isTag(settings.tags.newperf, tag)) {
 					goodNum++;
 					tagLink.addClass("s-newperf");
 				}
-				else if(settings.useLoveamatTags && isTag(settings.tags.loveamat, tag)){
+				else if (settings.useLoveamatTags && isTag(settings.tags.loveamat, tag)) {
 					goodNum++;
 					tagLink.addClass("s-loveamat");
 				}
-				else if(settings.useAmateurTags && isTag(settings.tags.amateur, tag)){
+				else if (settings.useAmateurTags && isTag(settings.tags.amateur, tag)) {
 					goodNum++;
 					tagLink.addClass("s-amateur");
 				}
-				else if(settings.useLovemaleTags && isTag(settings.tags.lovemale, tag)){
+				else if (settings.useLovemaleTags && isTag(settings.tags.lovemale, tag)) {
 					goodNum++;
 					tagLink.addClass("s-lovemale");
 				}
-				else if(settings.useMaleperfTags && isTag(settings.tags.maleperf, tag)){
+				else if (settings.useMaleperfTags && isTag(settings.tags.maleperf, tag)) {
 					goodNum++;
 					tagLink.addClass("s-maleperf");
 				}
-				else if(settings.useLovesiteTags && isTag(settings.tags.lovesite, tag)){
+				else if (settings.useLovesiteTags && isTag(settings.tags.lovesite, tag)) {
 					goodNum++;
 					tagLink.addClass("s-lovesite");
 				}
-				else if(settings.useLikesiteTags && isTag(settings.tags.likesite, tag)){
+				else if (settings.useLikesiteTags && isTag(settings.tags.likesite, tag)) {
 					goodNum++;
 					tagLink.addClass("s-likesite");
 				}
-				else if(settings.useHatedTags && isTag(settings.tags.hated, tag)){
+				else if (settings.useHatedTags && isTag(settings.tags.hated, tag)) {
 					badNum++;
 					tagLink.addClass("s-hated");
 				}
-				else if(settings.useTerribleTags && isTag(settings.tags.terrible, tag)){
-					if(!terribleNum){
+				else if (settings.useTerribleTags && isTag(settings.tags.terrible, tag)) {
+					if (!terribleNum) {
 						var colspan = row.children().length;
 						row.hide();
 						$j("<tr class='tr11'></tr>").insertAfter(row).html(
 							"<td colspan='" + colspan + "' class='s-terrible-hidden'>" + capitaliseFirstLetter(type) +
 							" hidden because of the blacklisted tag: <strong>" + tag +
 							"</strong>. Click here to display the " + type + " listing.</td>").
-						on("click", function(){
-							$j(this).hide();
-							row.show();
-						});
+							on("click", function () {
+								$j(this).hide();
+								row.show();
+							});
 					}
 					terribleNum++;
 					badNum++;
 					tagLink.addClass("s-terrible s-disliked");
 				}
-				else if(settings.useUselessTags && isTag(settings.tags.useless, tag)){
+				else if (settings.useUselessTags && isTag(settings.tags.useless, tag)) {
 					totalTagNum--;
 					tagLink.addClass("s-useless");
 				}
-				else if(settings.useDislikedTags && isTag(settings.tags.disliked, tag)){
+				else if (settings.useDislikedTags && isTag(settings.tags.disliked, tag)) {
 					badNum++;
 					tagLink.addClass("s-disliked");
 				}
 
 
 			});
-			var goodPercent = Math.round(goodNum/totalTagNum * 100);
-			var badPercent = Math.round(badNum/totalTagNum * 100);
+			var goodPercent = Math.round(goodNum / totalTagNum * 100);
+			var badPercent = Math.round(badNum / totalTagNum * 100);
 
-			if(settings.usePercentBar){
+			if (settings.usePercentBar) {
 				var percentContainer = $j("<div class='s-percent-container'></div>)").insertBefore(tagContainer);
 				percentContainer.width(tagContainer.parent().width() - 2);
 				$j("<div></div>").appendTo(percentContainer).addClass("s-percent s-percent-good").width(goodPercent + "%");
 				$j("<div></div>").appendTo(percentContainer).addClass("s-percent s-percent-bad").width(badPercent + "%");
 			}
 
-			if(settings.useTorrentOpacity && badPercent > goodPercent){
+			if (settings.useTorrentOpacity && badPercent > goodPercent) {
 				//opacity range: 0.5 - 1
-				row.css("opacity", (100 - ((badPercent - goodPercent)/2))/100);
+				row.css("opacity", (100 - ((badPercent - goodPercent) / 2)) / 100);
 			}
 
-			if(settings.useTorrentColoring){
+			if (settings.useTorrentColoring) {
 				//range -1 to 1
-				var netPercent = (goodPercent - badPercent)/100;
+				var netPercent = (goodPercent - badPercent) / 100;
 				var absPercent = Math.abs(netPercent);
 				var green = [120, 200, 120];
 				var red = [210, 120, 120];
 				var color;
-				if(netPercent > 0){
-					color= green;
+				if (netPercent > 0) {
+					color = green;
 				}
-				else if(netPercent < 0){
+				else if (netPercent < 0) {
 					color = red;
 				}
-				else{
+				else {
 					//color = [239,243,246];
 				}
-				if(color && !row.hasClass("redbar") && /torrents\.php/.test(window.location.href) && !/userid\=/.test(window.location.href)){
-					row.css({"background-color" : "rgba("+color[0]+","+color[1]+","+color[2]+","+absPercent+""});
+				if (color && !row.hasClass("redbar") && /torrents\.php/.test(window.location.href) && !/userid\=/.test(window.location.href)) {
+					row.css({ "background-color": "rgba(" + color[0] + "," + color[1] + "," + color[2] + "," + absPercent + "" });
 				}
 			}
 		});
 	}
 
-	function processDetailsPage(){
+	function processDetailsPage() {
 		var isTagsLoaded = false;
 
-		var handleTagListLoad = function(){
+		var handleTagListLoad = function () {
 			isTagsLoaded = false;
-			var checkTagList = function(){
-				if($j("#torrent_tags li a").hasClass("tags-loaded")){
+			var checkTagList = function () {
+				if ($j("#torrent_tags li a").hasClass("tags-loaded")) {
 					setTimeout(checkTagList, 30);
 				}
-				else{
+				else {
 					highlightDetailTags();
 				}
 			};
@@ -942,219 +943,219 @@ function runScript(){
 		};
 
 		$j(".tag_header span a, #form_addtag input[type='button']").on("click", handleTagListLoad);
-		$j("#tagname").on("keydown", function(e){
-			if(e.keyCode === 13){
+		$j("#tagname").on("keydown", function (e) {
+			if (e.keyCode === 13) {
 				handleTagListLoad();
 			}
 		});
 
-		var highlightDetailTags = function(){
-			if(isTagsLoaded) return;
+		var highlightDetailTags = function () {
+			if (isTagsLoaded) return;
 			//Timeout to ensure we run after everything else
 			var tagLinks = $j("#torrent_tags").find("a[href*='\\?taglist=']");
 
 			isTagsLoaded = tagLinks.length > 0;
 
-			if(!isTagsLoaded){
+			if (!isTagsLoaded) {
 				setTimeout(highlightDetailTags, 200);
 				return;
 			}
 
-			$j("<ul class='s-useless-tags nobullet'></ul>").appendTo("#torrent_tags").on("spyder.change", function(){
+			$j("<ul class='s-useless-tags nobullet'></ul>").appendTo("#torrent_tags").on("spyder.change", function () {
 				var hiddenTagHolder = $j(this),
 					hiddenTags = hiddenTagHolder.find("span.s-tag");
 
-				if(hiddenTags.length){
+				if (hiddenTags.length) {
 					$j(".s-useless-msg").text("There's " + hiddenTags.length + " useless tag" + (hiddenTags.length > 1 ? "s" : "") + " on this torrent ");
 					$j(".s-useless-msg, .s-useless-toggle").show();
 				}
-				else{
+				else {
 					$j(".s-useless-msg, .s-useless-toggle").hide();
 				}
 			}).before("<div class='s-useless-desc'><span class='s-useless-msg'></span> <a class='s-useless-toggle'>SHOW</a></div>");
 
-			$j(".s-useless-toggle").on("click", function(){
-				$j(".s-useless-tags").slideToggle("fast", function(){
-					if($j(this).is(":visible")){
+			$j(".s-useless-toggle").on("click", function () {
+				$j(".s-useless-tags").slideToggle("fast", function () {
+					if ($j(this).is(":visible")) {
 						$j(".s-useless-toggle").text("HIDE");
 					}
-					else{
+					else {
 						$j(".s-useless-toggle").text("SHOW");
 					}
 				});
 			});
 
-			tagLinks.each(function(i, tagLink){
+			tagLinks.each(function (i, tagLink) {
 				tagLink = $j(tagLink).addClass("tags-loaded");
 				var tag = tagLink.text(),
 					tagHolder = tagLink.wrap("<span>").parent().addClass("s-tag");
 
 				tag = tag.toLowerCase();
 
-				if(settings.useLovedTags && isTag(settings.tags.loved, tag)){
+				if (settings.useLovedTags && isTag(settings.tags.loved, tag)) {
 					tagHolder.addClass("s-loved");
 				}
-				else if(settings.useGoodTags && isTag(settings.tags.good, tag)){
+				else if (settings.useGoodTags && isTag(settings.tags.good, tag)) {
 					tagHolder.addClass("s-good");
 				}
-				else if(settings.useLoveperfTags && isTag(settings.tags.loveperf, tag)){
+				else if (settings.useLoveperfTags && isTag(settings.tags.loveperf, tag)) {
 					tagHolder.addClass("s-loveperf");
 				}
-				else if(settings.usePerformerTags && isTag(settings.tags.performer, tag)){
+				else if (settings.usePerformerTags && isTag(settings.tags.performer, tag)) {
 					tagHolder.addClass("s-performer");
 				}
-				else if(settings.useNewperfTags && isTag(settings.tags.newperf, tag)){
+				else if (settings.useNewperfTags && isTag(settings.tags.newperf, tag)) {
 					tagHolder.addClass("s-newperf");
 				}
-				else if(settings.useLoveamatTags && isTag(settings.tags.loveamat, tag)){
+				else if (settings.useLoveamatTags && isTag(settings.tags.loveamat, tag)) {
 					tagHolder.addClass("s-loveamat");
 				}
-				else if(settings.useAmateurTags && isTag(settings.tags.amateur, tag)){
+				else if (settings.useAmateurTags && isTag(settings.tags.amateur, tag)) {
 					tagHolder.addClass("s-amateur");
 				}
-				else if(settings.useLovemaleTags && isTag(settings.tags.lovemale, tag)){
+				else if (settings.useLovemaleTags && isTag(settings.tags.lovemale, tag)) {
 					tagHolder.addClass("s-lovemale");
 				}
-				else if(settings.useMaleperfTags && isTag(settings.tags.maleperf, tag)){
+				else if (settings.useMaleperfTags && isTag(settings.tags.maleperf, tag)) {
 					tagHolder.addClass("s-maleperf");
 				}
-				else if(settings.useLovesiteTags && isTag(settings.tags.lovesite, tag)){
+				else if (settings.useLovesiteTags && isTag(settings.tags.lovesite, tag)) {
 					tagHolder.addClass("s-lovesite");
 				}
-				else if(settings.useLikesiteTags && isTag(settings.tags.likesite, tag)){
+				else if (settings.useLikesiteTags && isTag(settings.tags.likesite, tag)) {
 					tagHolder.addClass("s-likesite");
 				}
-				else if(settings.useHatedTags && isTag(settings.tags.hated, tag)){
+				else if (settings.useHatedTags && isTag(settings.tags.hated, tag)) {
 					tagHolder.addClass("s-hated");
 				}
-				else if(settings.useUselessTags && isTag(settings.tags.useless, tag)){
+				else if (settings.useUselessTags && isTag(settings.tags.useless, tag)) {
 					var uselessTag = tagHolder.addClass("s-useless");
 					uselessTag.parent().detach().appendTo(".s-useless-tags").trigger("spyder.change");
 				}
-				else if(settings.useTerribleTags && isTag(settings.tags.terrible, tag)){
+				else if (settings.useTerribleTags && isTag(settings.tags.terrible, tag)) {
 					tagHolder.addClass("s-terrible");
 				}
-				else if(settings.useDislikedTags && isTag(settings.tags.disliked, tag)){
+				else if (settings.useDislikedTags && isTag(settings.tags.disliked, tag)) {
 					tagHolder.addClass("s-disliked");
 				}
 
 				var buttons = $j();
 
-				if(settings.useGoodTags){
-					if(!settings.buttonGoodTags){
+				if (settings.useGoodTags) {
+					if (!settings.buttonGoodTags) {
 						buttons = buttons.add($j("<div class='s-button s-add-good' title='Mark tag as LIKED'>+</div>").
-										  data("action", {fn : addTagElement, type : "good", tag : tag}));
+							data("action", { fn: addTagElement, type: "good", tag: tag }));
 					}
 					buttons = buttons.add($j("<div class='s-button s-remove-good' title='Un-Mark tag as LIKED'>–</div>").
-										  data("action", {fn : removeTagElement, type : "good", tag : tag}));
+						data("action", { fn: removeTagElement, type: "good", tag: tag }));
 				}
-				if(settings.useLovedTags){
+				if (settings.useLovedTags) {
 					buttons = buttons.add($j("<div class='s-button s-add-loved' title='Mark tag as LOVED'>+</div>").
-										  data("action", {fn : addLovedTagElement, type : "loved", tag : tag}));
+						data("action", { fn: addLovedTagElement, type: "loved", tag: tag }));
 					buttons = buttons.add($j("<div class='s-button s-remove-loved' title='Un-Mark tag as LOVED'>–</div>").
-										  data("action", {fn : removeLovedTagElement, type : "loved", tag : tag}));
+						data("action", { fn: removeLovedTagElement, type: "loved", tag: tag }));
 				}
-				if(settings.usePerformerTags){
-					if(!settings.buttonPerformerTags){
+				if (settings.usePerformerTags) {
+					if (!settings.buttonPerformerTags) {
 						buttons = buttons.add($j("<div class='s-button s-add-performer' title='Mark tag as Performer'>+</div>").
-										  data("action", {fn : addTagElement, type : "performer", tag : tag}));
+							data("action", { fn: addTagElement, type: "performer", tag: tag }));
 					}
 					buttons = buttons.add($j("<div class='s-button s-remove-performer' title='Un-Mark tag as Performer'>–</div>").
-										  data("action", {fn : removeTagElement, type : "performer", tag : tag}));
+						data("action", { fn: removeTagElement, type: "performer", tag: tag }));
 				}
-				if(settings.useLoveperfTags){
+				if (settings.useLoveperfTags) {
 					buttons = buttons.add($j("<div class='s-button s-add-loveperf' title='Mark tag as Loved Performer'>+</div>").
-										  data("action", {fn : addLoveperfTagElement, type : "loveperf", tag : tag}));
+						data("action", { fn: addLoveperfTagElement, type: "loveperf", tag: tag }));
 					buttons = buttons.add($j("<div class='s-button s-remove-loveperf' title='Un-Mark tag as Loved Performer'>–</div>").
-										  data("action", {fn : removeLoveperfTagElement, type : "loveperf", tag : tag}));
+						data("action", { fn: removeLoveperfTagElement, type: "loveperf", tag: tag }));
 				}
-				if(settings.useNewperfTags){
-					if(!settings.buttonNewperfTags){
+				if (settings.useNewperfTags) {
+					if (!settings.buttonNewperfTags) {
 						buttons = buttons.add($j("<div class='s-button s-add-newperf' title='Mark tag as New Performer'>+</div>").
-										  data("action", {fn : addTagElement, type : "newperf", tag : tag}));
+							data("action", { fn: addTagElement, type: "newperf", tag: tag }));
 					}
 					buttons = buttons.add($j("<div class='s-button s-remove-newperf' title='Un-Mark tag as New Performer'>–</div>").
-										  data("action", {fn : removeTagElement, type : "newperf", tag : tag}));
+						data("action", { fn: removeTagElement, type: "newperf", tag: tag }));
 				}
-				if(settings.useAmateurTags){
-					if(!settings.buttonAmateurTags){
+				if (settings.useAmateurTags) {
+					if (!settings.buttonAmateurTags) {
 						buttons = buttons.add($j("<div class='s-button s-add-amateur' title='Mark tag as Amateur'>+</div>").
-										  data("action", {fn : addTagElement, type : "amateur", tag : tag}));
+							data("action", { fn: addTagElement, type: "amateur", tag: tag }));
 					}
 					buttons = buttons.add($j("<div class='s-button s-remove-amateur' title='Un-Mark tag as New Amateur'>–</div>").
-										  data("action", {fn : removeTagElement, type : "amateur", tag : tag}));
+						data("action", { fn: removeTagElement, type: "amateur", tag: tag }));
 				}
-				if(settings.useLoveamatTags){
+				if (settings.useLoveamatTags) {
 					buttons = buttons.add($j("<div class='s-button s-add-loveamat' title='Mark tag as Loved Amateur'>+</div>").
-										  data("action", {fn : addLoveamatTagElement, type : "loveamat", tag : tag}));
+						data("action", { fn: addLoveamatTagElement, type: "loveamat", tag: tag }));
 					buttons = buttons.add($j("<div class='s-button s-remove-loveamat' title='Un-Mark tag as Loved Amateur'>–</div>").
-										  data("action", {fn : removeLoveamatTagElement, type : "loveamat", tag : tag}));
+						data("action", { fn: removeLoveamatTagElement, type: "loveamat", tag: tag }));
 				}
-				if(settings.useMaleperfTags){
-					if(!settings.buttonMaleperfTags){
-					buttons = buttons.add($j("<div class='s-button s-add-maleperf' title='Mark tag as Male Performer'>+</div>").
-												data("action", {fn : addTagElement, type : "maleperf", tag : tag}));
+				if (settings.useMaleperfTags) {
+					if (!settings.buttonMaleperfTags) {
+						buttons = buttons.add($j("<div class='s-button s-add-maleperf' title='Mark tag as Male Performer'>+</div>").
+							data("action", { fn: addTagElement, type: "maleperf", tag: tag }));
 					}
 					buttons = buttons.add($j("<div class='s-button s-remove-maleperf' title='Un-Mark tag as Male Performer'>–</div>").
-									data("action", {fn : removeTagElement, type : "maleperf", tag : tag}));
+						data("action", { fn: removeTagElement, type: "maleperf", tag: tag }));
 				}
-				if(settings.useLovemaleTags){
+				if (settings.useLovemaleTags) {
 					buttons = buttons.add($j("<div class='s-button s-add-lovemale' title='Mark tag as Loved Male Performer'>+</div>").
-										data("action", {fn : addLovemaleTagElement, type : "lovemale", tag : tag}));
+						data("action", { fn: addLovemaleTagElement, type: "lovemale", tag: tag }));
 					buttons = buttons.add($j("<div class='s-button s-remove-lovemale' title='Un-Mark tag as Loved Male Performer'>–</div>").
-										data("action", {fn : removeLovemaleTagElement, type : "lovemale", tag : tag}));
+						data("action", { fn: removeLovemaleTagElement, type: "lovemale", tag: tag }));
 				}
-				if(settings.useLikesiteTags){
-					if(!settings.buttonLikesiteTags){
-					buttons = buttons.add($j("<div class='s-button s-add-likesite' title='Mark tag as Liked Site'>+</div>").
-										data("action", {fn : addTagElement, type : "likesite", tag : tag}));
+				if (settings.useLikesiteTags) {
+					if (!settings.buttonLikesiteTags) {
+						buttons = buttons.add($j("<div class='s-button s-add-likesite' title='Mark tag as Liked Site'>+</div>").
+							data("action", { fn: addTagElement, type: "likesite", tag: tag }));
 					}
 					buttons = buttons.add($j("<div class='s-button s-remove-likesite' title='Un-Mark tag as Liked Site'>–</div>").
-										data("action", {fn : removeTagElement, type : "likesite", tag : tag}));
+						data("action", { fn: removeTagElement, type: "likesite", tag: tag }));
 				}
-				if(settings.useLovesiteTags){
+				if (settings.useLovesiteTags) {
 					buttons = buttons.add($j("<div class='s-button s-add-lovesite' title='Mark tag as Loved Site'>+</div>").
-										data("action", {fn : addLovesiteTagElement, type : "lovesite", tag : tag}));
+						data("action", { fn: addLovesiteTagElement, type: "lovesite", tag: tag }));
 					buttons = buttons.add($j("<div class='s-button s-remove-lovesite' title='Un-Mark tag as Loved Site'>–</div>").
-										data("action", {fn : removeLovesiteTagElement, type : "lovesite", tag : tag}));
+						data("action", { fn: removeLovesiteTagElement, type: "lovesite", tag: tag }));
 				}
-				if(settings.useDislikedTags){
-					if(!settings.buttonDislikedTags){
+				if (settings.useDislikedTags) {
+					if (!settings.buttonDislikedTags) {
 						buttons = buttons.add($j("<div class='s-button s-add-disliked' title='Mark tag as DISLIKED'>×</div>").
-							data("action", {fn : addTagElement, type : "disliked", tag : tag}));
+							data("action", { fn: addTagElement, type: "disliked", tag: tag }));
 					}
 					buttons = buttons.add($j("<div class='s-button s-remove-disliked' title='Un-Mark tag as DISLIKED'>–</div>").
-										  data("action", {fn : removeTagElement, type : "disliked", tag : tag}));
+						data("action", { fn: removeTagElement, type: "disliked", tag: tag }));
 				}
-				if(settings.useHatedTags){
+				if (settings.useHatedTags) {
 					buttons = buttons.add($j("<div class='s-button s-add-hated' title='Mark tag as HATED'>×</div>").
-										  data("action", {fn : addHatedTagElement, type : "hated", tag : tag}));
+						data("action", { fn: addHatedTagElement, type: "hated", tag: tag }));
 					buttons = buttons.add($j("<div class='s-button s-remove-hated' title='Un-Mark tag as HATED'>–</div>").
-										  data("action", {fn : removeHatedTagElement, type : "hated", tag : tag}));
+						data("action", { fn: removeHatedTagElement, type: "hated", tag: tag }));
 				}
-				if(settings.useTerribleTags){
+				if (settings.useTerribleTags) {
 					buttons = buttons.add($j("<div class='s-button s-add-terrible' title='Mark tag as BLACKLISTED. \nTorrents with this tag will be hidden!'>!</div>").
-										  data("action", {fn : addTerribleTagElement, type : "terrible", tag : tag}));
+						data("action", { fn: addTerribleTagElement, type: "terrible", tag: tag }));
 					buttons = buttons.add($j("<div class='s-button s-remove-terrible' title='Un-Mark tag as BLACKLISTED'>–</div>").
-										  data("action", {fn : removeTerribleTagElement, type : "terrible", tag : tag}));
+						data("action", { fn: removeTerribleTagElement, type: "terrible", tag: tag }));
 				}
-				if(settings.useUselessTags){
+				if (settings.useUselessTags) {
 					buttons = buttons.add($j("<div class='s-button s-add-useless' title='Mark tag as USELESS. \nThis tag will be hidden from all torrents!'>-</div>").
-										  data("action", {fn : addUselessTagElement, type : "useless", tag : tag}));
+						data("action", { fn: addUselessTagElement, type: "useless", tag: tag }));
 					buttons = buttons.add($j("<div class='s-button s-remove-useless' title='Un-Mark tag as USELESS'>–</div>").
-										  data("action", {fn : removeUselessTagElement, type : "useless", tag : tag}));
+						data("action", { fn: removeUselessTagElement, type: "useless", tag: tag }));
 				}
 				$j(buttons).addClass("s-button").prependTo(tagHolder);
 
 				// create more horizontal space by hiding "tag action" placeholder spans
 				tagHolder.next().find("span:contains('\xa0\xa0\xa0')").hide();
 				// staff/mods have additional "tag actions", allow for additional styling
-				if (tagHolder.next().find("a").length > 2){
+				if (tagHolder.next().find("a").length > 2) {
 					tagHolder.addClass("s-staff");
 				}
 			});
 
-			$j(".s-button").on("click", function(e){
+			$j(".s-button").on("click", function (e) {
 				var data = $j(this).data("action");
 				data.fn(data.type, $j(this).parent(), data.tag);
 			});
@@ -1166,27 +1167,27 @@ function runScript(){
 	}
 
 	//Configuration
-	function initConfig(base){
+	function initConfig(base) {
 		//Init Display
-		for(var name in settings){
-			if(settings.hasOwnProperty(name)){
-				if(name == "tags"){
-					for(var tagType in settings[name]){
-						if(settings[name].hasOwnProperty(tagType)){
+		for (var name in settings) {
+			if (settings.hasOwnProperty(name)) {
+				if (name == "tags") {
+					for (var tagType in settings[name]) {
+						if (settings[name].hasOwnProperty(tagType)) {
 							displayTags(tagType);
 						}
 					}
 				}
-				else{
-					$j("input[name='"+name+"']").prop("checked", settings[name]);
+				else {
+					$j("input[name='" + name + "']").prop("checked", settings[name]);
 				}
 			}
 		}
 
 		//Init Listeners
-		$j(".s-conf-tab").parent().on("click", function(){
+		$j(".s-conf-tab").parent().on("click", function () {
 			var tab = $j(this);
-			if(!tab.hasClass("s-selected")){
+			if (!tab.hasClass("s-selected")) {
 				$j('.tab-row-container li').removeClass('s-selected');
 				$j('.s-conf-page').removeClass("s-selected");
 				tab.addClass("s-selected");
@@ -1194,138 +1195,138 @@ function runScript(){
 			}
 		});
 
-		$j(".s-conf-gen-checkbox").on("change", function(){
+		$j(".s-conf-gen-checkbox").on("change", function () {
 			var checkbox = $j(this);
 			var name = checkbox.attr("name");
 			var isChecked = checkbox.is(":checked");
 
 			settings[name] = isChecked;
-			if((name == "useTerribleTags" && isChecked) || (name == "useHatedTags" && isChecked) || (name == "useUselessTags" && isChecked)){
+			if ((name == "useTerribleTags" && isChecked) || (name == "useHatedTags" && isChecked) || (name == "useUselessTags" && isChecked)) {
 				$j("input[name='useDislikedTags']").prop("checked", true).trigger("change");
 			}
-			else if(name == "useDislikedTags" && !isChecked){
+			else if (name == "useDislikedTags" && !isChecked) {
 				$j("input[name='useTerribleTags']").prop("checked", false).trigger("change");
 				$j("input[name='useHatedTags']").prop("checked", false).trigger("change");
 				$j("input[name='useUselessTags']").prop("checked", false).trigger("change");
 			}
-			else if((name == "useLovesiteTags" && isChecked) ){
+			else if ((name == "useLovesiteTags" && isChecked)) {
 				$j("input[name='useLikesiteTags']").prop("checked", true).trigger("change");
 			}
-			else if(name == "useLikesiteTags" && !isChecked){
+			else if (name == "useLikesiteTags" && !isChecked) {
 				$j("input[name='useLovesiteTags']").prop("checked", false).trigger("change");
 			}
-			else if((name == "useLovemaleTags" && isChecked) ){
+			else if ((name == "useLovemaleTags" && isChecked)) {
 				$j("input[name='useMaleperfTags']").prop("checked", true).trigger("change");
 			}
-			else if(name == "useMaleperfTags" && !isChecked){
+			else if (name == "useMaleperfTags" && !isChecked) {
 				$j("input[name='useLovemaleTags']").prop("checked", false).trigger("change");
 			}
-			else if((name == "useLoveamatTags" && isChecked) ){
+			else if ((name == "useLoveamatTags" && isChecked)) {
 				$j("input[name='useAmateurTags']").prop("checked", true).trigger("change");
 			}
-			else if(name == "useAmateurTags" && !isChecked){
+			else if (name == "useAmateurTags" && !isChecked) {
 				$j("input[name='useLoveamatTags']").prop("checked", false).trigger("change");
 			}
-			else if((name == "useLoveperfTags" && isChecked) ){
+			else if ((name == "useLoveperfTags" && isChecked)) {
 				$j("input[name='usePerformerTags']").prop("checked", true).trigger("change");
 			}
-			else if(name == "usePerformerTags" && !isChecked){
+			else if (name == "usePerformerTags" && !isChecked) {
 				$j("input[name='useLoveperfTags']").prop("checked", false).trigger("change");
 			}
-			else if((name == "useLovedTags" && isChecked) ){
+			else if ((name == "useLovedTags" && isChecked)) {
 				$j("input[name='useGoodTags']").prop("checked", true).trigger("change");
 			}
-			else if(name == "useGoodTags" && !isChecked){
+			else if (name == "useGoodTags" && !isChecked) {
 				$j("input[name='useLovedTags']").prop("checked", false).trigger("change");
 			}
 
 
 		});
 
-		$j("#s-conf-save").on("click", function(e){
+		$j("#s-conf-save").on("click", function (e) {
 			e.preventDefault();
 			saveSettings();
 			displayStatus("success", "Settings updated successfully");
 		});
 
-		$j("#s-conf-close").on("click", function(){
+		$j("#s-conf-close").on("click", function () {
 			base.remove();
 		});
 
-		$j("#s-conf-status").on("click", "#s-conf-status-close", function(){
+		$j("#s-conf-status").on("click", "#s-conf-status-close", function () {
 			$j(this).parent().fadeOut("fast");
 		});
 
-		$j(".s-conf-add-btn, .s-conf-remove-btn").on("click", function(){
+		$j(".s-conf-add-btn, .s-conf-remove-btn").on("click", function () {
 			var button = $j(this);
 			var method = button.hasClass("s-conf-remove-btn") ? removeTags : addTags;
 			var type = button.data("type");
 			var input = button.prev();
-			var tags = $j.grep(input.val().toLowerCase().split(" "), function(tag){return tag;});
-			if(tags.length){
+			var tags = $j.grep(input.val().toLowerCase().split(" "), function (tag) { return tag; });
+			if (tags.length) {
 				method(type, tags);
 				input.val("");
 				displayTags(type);
 				displayStatus("success", type + " tags have been updated successfully.");
 			}
-			else{
+			else {
 				displayStatus("error", "Tags not updated becuase none were provided");
 			}
 		});
 
-		function displayTags(type){
+		function displayTags(type) {
 			$j("#s-conf-text-" + type).val(settings.tags[type].join(" "));
 		}
 
-		function displayStatus(type, msg){
-			$j("#s-conf-status").fadeOut("fast", function(){
+		function displayStatus(type, msg) {
+			$j("#s-conf-status").fadeOut("fast", function () {
 				$j(this).removeClass().addClass("s-" + type).html(msg + " <a id='s-conf-status-close'>(×)</a>").fadeIn("fast");
 			});
 		}
-	  
+
 		function refreshUI() {
-		  $j('#s-conf-background').remove();
-		  initConfig($j(configHTML).prependTo("body"));
+			$j('#s-conf-background').remove();
+			initConfig($j(configHTML).prependTo("body"));
 		}
-		
-	  // Import/export settings related code
-	  function importSettings(rawSettings) {
-		try {
-		  const trimmedSettings = rawSettings.trim();
-		  if (trimmedSettings.length === 0) {
-			throw new Error('Settings empty.');
-		  }
-		  const importedSettings = JSON.parse(trimmedSettings);
-		  // setValue("spyderSettings", trimmedSettings);
-		  settings = importedSettings;
-		  saveSettings();
-		} catch (e) {
-		  throw e;
+
+		// Import/export settings related code
+		function importSettings(rawSettings) {
+			try {
+				const trimmedSettings = rawSettings.trim();
+				if (trimmedSettings.length === 0) {
+					throw new Error('Settings empty.');
+				}
+				const importedSettings = JSON.parse(trimmedSettings);
+				// setValue("spyderSettings", trimmedSettings);
+				settings = importedSettings;
+				saveSettings();
+			} catch (e) {
+				throw e;
+			}
 		}
-	  } 
-		
+
 		$j('#import-settings-button').on('click', (e) => {
-		  e.preventDefault();
-		  try {
-			const textArea = $j('#import-settings-textarea');
-			
-			importSettings(textArea.val());
-			
-			// Refresh UI with new settings.
-			refreshUI();
-			displayStatus("success", "Imported settings successfully.");
-		  } catch (e) {
-			displayStatus("error", `Unable to import settings: ${e.message}`)
-		  }
-		  
+			e.preventDefault();
+			try {
+				const textArea = $j('#import-settings-textarea');
+
+				importSettings(textArea.val());
+
+				// Refresh UI with new settings.
+				refreshUI();
+				displayStatus("success", "Imported settings successfully.");
+			} catch (e) {
+				displayStatus("error", `Unable to import settings: ${e.message}`)
+			}
+
 		});
 
 		// Populate export settings textarea with settings
 		const ta = document.querySelector('#export-settings-textarea');
 		ta.textContent = JSON.stringify(getSettings());
-	  
+
 		// Escape closes ETH
-		$j(document).keyup(function(e) {
+		$j(document).keyup(function (e) {
 			const tagMenu = document.getElementById('tag-highlighter-tag-menu');
 
 			if (e.key === "Escape") {
@@ -1334,180 +1335,180 @@ function runScript(){
 					return;
 				}
 
-			  	base.remove();
+				base.remove();
 			}
 		});
 
-		const	 tagDropdown = setupTagDropdown();
+		const tagDropdown = setupTagDropdown();
 		tagDropdown.init(document.getElementById('s-conf-add-loved'));
 	}
 
 	//General Purpose Funcitons
-	function addTerribleTagElement(type, holder, tag){
+	function addTerribleTagElement(type, holder, tag) {
 		holder.removeClass("s-disliked");
 		addTagElement(type, holder, tag);
 	}
-	function removeTerribleTagElement(type, holder, tag){
-	   removeTagElement(type, holder, tag);
+	function removeTerribleTagElement(type, holder, tag) {
+		removeTagElement(type, holder, tag);
 		holder.addClass("s-disliked");
 	}
-	function addHatedTagElement(type, holder, tag){
+	function addHatedTagElement(type, holder, tag) {
 		holder.removeClass("s-disliked");
 		addTagElement(type, holder, tag);
 	}
-	function removeHatedTagElement(type, holder, tag){
-	   removeTagElement(type, holder, tag);
+	function removeHatedTagElement(type, holder, tag) {
+		removeTagElement(type, holder, tag);
 		holder.addClass("s-disliked");
 	}
-	function addLovedTagElement(type, holder, tag){
+	function addLovedTagElement(type, holder, tag) {
 		holder.removeClass("s-good");
 		addTagElement(type, holder, tag);
 	}
-	function removeLovedTagElement(type, holder, tag){
+	function removeLovedTagElement(type, holder, tag) {
 		removeTagElement(type, holder, tag);
 		holder.addClass("s-good");
 	}
-	function addLoveperfTagElement(type, holder, tag){
+	function addLoveperfTagElement(type, holder, tag) {
 		holder.removeClass("s-performer");
 		addTagElement(type, holder, tag);
 	}
-	function removeLoveperfTagElement(type, holder, tag){
+	function removeLoveperfTagElement(type, holder, tag) {
 		removeTagElement(type, holder, tag);
 		holder.addClass("s-performer");
 	}
-	function addLoveamatTagElement(type, holder, tag){
+	function addLoveamatTagElement(type, holder, tag) {
 		holder.removeClass("s-amateur");
 		addTagElement(type, holder, tag);
 	}
-	function removeLoveamatTagElement(type, holder, tag){
+	function removeLoveamatTagElement(type, holder, tag) {
 		removeTagElement(type, holder, tag);
 		holder.addClass("s-amateur");
 	}
-	function addLovemaleTagElement(type, holder, tag){
+	function addLovemaleTagElement(type, holder, tag) {
 		holder.removeClass("s-maleperf");
 		addTagElement(type, holder, tag);
 	}
-	function removeLovemaleTagElement(type, holder, tag){
+	function removeLovemaleTagElement(type, holder, tag) {
 		removeTagElement(type, holder, tag);
 		holder.addClass("s-maleperf");
 	}
-	function addLovesiteTagElement(type, holder, tag){
+	function addLovesiteTagElement(type, holder, tag) {
 		holder.removeClass("s-likesite");
 		addTagElement(type, holder, tag);
 	}
-	function removeLovesiteTagElement(type, holder, tag){
+	function removeLovesiteTagElement(type, holder, tag) {
 		removeTagElement(type, holder, tag);
 		holder.addClass("s-likesite");
 	}
-	function addUselessTagElement(type, holder, tag){
+	function addUselessTagElement(type, holder, tag) {
 		holder.parent().detach().appendTo($j(".s-useless-tags"));
 		$j(".s-useless-tags").trigger("spyder.change");
 		addTagElement(type, holder, tag);
 	}
-	function removeUselessTagElement(type, holder, tag){
+	function removeUselessTagElement(type, holder, tag) {
 		holder.parent().detach().insertBefore($j(".s-useless-desc"));
 		$j(".s-useless-tags").trigger("spyder.change");
 		removeTagElement(type, holder, tag);
 	}
-	function addTagElement(type, holder, tag){
+	function addTagElement(type, holder, tag) {
 		holder.addClass("s-" + type);
 		addTags(type, tag);
 	}
-	function removeTagElement(type, holder, tag){
+	function removeTagElement(type, holder, tag) {
 		holder.removeClass("s-good s-loved s-performer s-loveperf s-newperf s-amateur s-loveamat s-maleperf s-lovemale s-likesite s-lovesite s-disliked s-hated s-terrible s-useless");
 		removeTags(type, tag);
 	}
-	function addTags(type, tags){
+	function addTags(type, tags) {
 		settings = getSettings();
 		var tagArray = settings.tags[type];
 		var tmp = getEquivalentTags(tags);
-		for(var i=0; i<tmp.length; i++){
+		for (var i = 0; i < tmp.length; i++) {
 			var tag = tmp[i];
-			if(tag.length > 0){
+			if (tag.length > 0) {
 				var idx = tagArray.indexOf(tag);
-				if (idx < 0){
+				if (idx < 0) {
 					tagArray.push(tag);
 				}
 			}
 		}
 		saveTags(type, tagArray);
 	}
-	function removeTags(type, tags){
+	function removeTags(type, tags) {
 		settings = getSettings();
 		var tagArray = settings.tags[type];
 		var tmp = getEquivalentTags(tags);
-		for(var i=0; i<tmp.length; i++){
+		for (var i = 0; i < tmp.length; i++) {
 			var tag = tmp[i];
-			if(tag.length > 0){
+			if (tag.length > 0) {
 				var idx = tagArray.indexOf(tag);
-				if (idx >= 0){
+				if (idx >= 0) {
 					tagArray.splice(idx, 1);
 				}
 			}
 		}
 		saveTags(type, tagArray);
 	}
-	function isTag(allTags, tag){
-		if(allTags.indexOf(tag) >= 0){
+	function isTag(allTags, tag) {
+		if (allTags.indexOf(tag) >= 0) {
 			return true;
 		}
-		else if(allTags.indexOf(tag.replace(".", "")) >= 0){
+		else if (allTags.indexOf(tag.replace(".", "")) >= 0) {
 			return true;
 		}
-		else{
+		else {
 			return false;
 		}
 	}
-	function getValue(name, def){
+	function getValue(name, def) {
 
 		return GM_getValue(name, def);
 
 	}
-	function setValue(name, value){
+	function setValue(name, value) {
 		GM_setValue(name, value);
 	}
-	function saveTags(name, tagArray){
-		var tmp = $j.grep(tagArray, function(tag){return tag;});
+	function saveTags(name, tagArray) {
+		var tmp = $j.grep(tagArray, function (tag) { return tag; });
 		tmp.sort();
 		settings.tags[name] = tmp;
 		saveSettings();
 	}
-	function getSettings(){
+	function getSettings() {
 		return JSON.parse(getValue("spyderSettings", "{}"));
 	}
-	function saveSettings(){
+	function saveSettings() {
 		setValue("spyderSettings", JSON.stringify(settings));
 	}
-	function getEquivalentTags(tagArray){
-		if(typeof tagArray == "string"){
+	function getEquivalentTags(tagArray) {
+		if (typeof tagArray == "string") {
 			tagArray = tagArray.split(" ");
 		}
 		var allTags = [];
-		for(var i = 0, length = tagArray.length; i < length; i++){
+		for (var i = 0, length = tagArray.length; i < length; i++) {
 			var tag = tagArray[i];
-			if(/\./g.test(tag)){
+			if (/\./g.test(tag)) {
 				allTags.push(tag.replace(".", ""));
 			}
 			allTags.push(tag);
 		}
 		return allTags;
 	}
-	function capitaliseFirstLetter(string){
+	function capitaliseFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 }
 
-if(typeof jQuery == "undefined"){
+if (typeof jQuery == "undefined") {
 	addJQuery(runScript);
 }
-else{
+else {
 	runScript();
 }
 
 function addJQuery(callback) {
 	var script = document.createElement("script");
 	script.setAttribute("src", "https://code.jquery.com/jquery-1.12.4.min.js");
-	script.addEventListener('load', function() {
+	script.addEventListener('load', function () {
 		var script = document.createElement("script");
 		script.textContent = "(" + callback.toString() + ")();";
 		document.body.appendChild(script);
