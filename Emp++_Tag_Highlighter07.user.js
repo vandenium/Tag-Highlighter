@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name Emp++ Tag Highlighter 0.7
-// @version 0.7.5c
+// @version 0.7.6-beta
 // @description highlights liked/disliked tags
 // @grant GM_getValue
 // @grant GM_setValue
@@ -25,6 +25,8 @@
 // ==/UserScript==
 
 // Changelog:
+// Version 0.7.6-beta
+// - Add dropdown tag menu to input fields.
 // Version 0.7.5c
 // - Fixing some bugs that appear after the cleaning.
 // Version 0.7.5b
