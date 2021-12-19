@@ -59,9 +59,22 @@
 // - Loved Performers/tags can be toggled after you liked a perfomer/tag
 // - few size changes to fit all in the config window
 
-function setupTagDropdown() {
+function once(fn, context) {
+	var result;
 
-	let inputElement;
+	return function () {
+		if (fn) {
+			result = fn.apply(context || this, arguments);
+			fn = null;
+		}
+
+		return result;
+	};
+}
+
+function setupTagDropdown(conf) {
+
+	const inputElement = document.getElementById(conf.inputElId);
 	let tagMenu;
 
 	const css = `
@@ -114,75 +127,49 @@ function setupTagDropdown() {
 
 	const debouncedAddTagMenu = debounce(removeAndAddTagMenu, 250);
 
-	const isTagMenuOpen = () => !!document.getElementById('tag-highlighter-tag-menu');
+	const isTagMenuOpen = () => !!tagMenu;
 
-	function addInputEventHandlers(inputEl) { // need to do this for all input els.
+	function addInputEventHandlers() {
 
 		// Set up eventing for the tag menu
-		document.body.addEventListener('keydown', (evt) => {
+		inputElement.addEventListener('keyup', (evt) => {
 
-			if (isTagMenuOpen && evt.key.toLowerCase() === 'enter') {
-				evt.preventDefault();
-
-				const currentValues = inputEl.value.trim().split(' ');
-				if (!currentValues.includes(document.activeElement.innerText)) {
-					currentValues[currentValues.length - 1] = `${document.activeElement.innerText} `;
-					inputEl.value = currentValues.join(' ');
-					tagMenu.remove();
-					inputEl.focus();
-				}
-			}
-
-			if (isTagMenuOpen() && evt.key === 'ArrowUp' || evt.key === 'ArrowDown') {
-				// override default scrolling for arrow up/down on body.
-				evt.preventDefault();
-				evt.stopPropagation();
-
-				if (isTagMenuOpen() && document.activeElement.tagName.toLowerCase() === 'li') {
-					const curActiveEl = document.activeElement;
-
-					if (curActiveEl.tabIndex === 0 && evt.key === 'ArrowUp') {
-						curActiveEl.style.backgroundColor = null;
-						inputEl.focus();
-						return;
-					}
-
-					if (curActiveEl.tabIndex === 9 && evt.key === 'ArrowUp') {
-						curActiveEl.style.backgroundColor = null;
-						curActiveEl.previousSibling.focus();
-						curActiveEl.previousSibling.style.backgroundColor = '#ccc';
-						return;
-					}
-
-					if (curActiveEl.tabIndex !== 9) {
-						curActiveEl.style.backgroundColor = null;
-						const whichSibling = evt.key === 'ArrowDown' ? 'nextSibling' : 'previousSibling';
-						document.activeElement[whichSibling].focus();
-						document.activeElement.style.backgroundColor = '#ccc';
-					}
-				} else {
-					tagMenu.firstChild.focus();
-					document.activeElement.style.backgroundColor = '#ccc';
-				}
-			}
-		});
-
-
-		inputEl.addEventListener('keyup', (evt) => {
-			if (!evt.target.value) {
-				tagMenu.remove();
+			// Ignore escape
+			if (evt.key === 'Escape') {
 				return;
 			}
+
+			// if empty, remove menu
+			if (!evt.target.value) {
+				if (tagMenu) {
+					tagMenu.remove();
+				}
+				return;
+			}
+
+			// If not up/down, populate tag menu
 			if (evt.key !== 'ArrowUp' && evt.key !== 'ArrowDown') {
 				debouncedAddTagMenu(evt);
-			} else { }
+			} else {
+				// Highlight first element of tagMenu
+				if (tagMenu && event.key === 'ArrowDown') {
+					tagMenu.firstChild.focus();
+					tagMenu.firstChild.style.backgroundColor = '#ccc';
+				}
+			}
 		});
+
+		// Remove menu if clicking out of input
+		inputElement.addEventListener('focusout', (evt) => {
+			if (!isTagMenuOpen()) {
+				tagMenu.remove();
+			}
+		})
 	}
 
-	function init(inputEl) {
-		inputElement = inputEl;
+	function init() {
 		createStyleSheet();
-		addInputEventHandlers(inputEl);
+		addInputEventHandlers();
 	}
 
 	const getTags = async (txt) => {
@@ -211,6 +198,58 @@ function setupTagDropdown() {
 				li.classList.add('tag-highlighter-tag-item');
 				li.tabIndex = i;
 				li.innerText = tagName;
+
+
+				li.addEventListener('keydown', (evt) => {
+
+					if (evt.key.toLowerCase() === 'enter') {
+						evt.preventDefault();
+
+						const currentValues = inputElement.value.trim().split(' ');
+						if (!currentValues.includes(document.activeElement.innerText)) {
+							currentValues[currentValues.length - 1] = `${document.activeElement.innerText} `;
+							inputElement.value = currentValues.join(' ');
+							tagMenu.remove();
+							inputElement.focus();
+						}
+					}
+
+					if (evt.key === 'ArrowUp' || evt.key === 'ArrowDown') {
+						// override default scrolling for arrow up/down on body.
+						evt.preventDefault();
+						evt.stopPropagation();
+
+						if (document.activeElement.tagName.toLowerCase() === 'li') {
+							const curActiveEl = document.activeElement;
+
+							if (curActiveEl.tabIndex === 0 && evt.key === 'ArrowUp') {
+								curActiveEl.style.backgroundColor = null;
+								inputElement.focus();
+								return;
+							}
+
+							if (curActiveEl.tabIndex === 9 && evt.key === 'ArrowUp') {
+								curActiveEl.style.backgroundColor = null;
+								curActiveEl.previousSibling.focus();
+								curActiveEl.previousSibling.style.backgroundColor = '#ccc';
+								return;
+							}
+
+							if (curActiveEl.tabIndex !== 9) {
+								curActiveEl.style.backgroundColor = null;
+								const whichSibling = evt.key === 'ArrowDown' ? 'nextSibling' : 'previousSibling';
+								document.activeElement[whichSibling].focus();
+								document.activeElement.style.backgroundColor = '#ccc';
+							}
+						} else {
+							tagMenu.firstChild.focus();
+							document.activeElement.style.backgroundColor = '#ccc';
+						}
+					}
+
+				});
+
+
 				li.addEventListener('click', event => {
 					// replace last value with clicked value
 					const curValue = inputElement.value.trim();
@@ -283,8 +322,6 @@ function setupTagDropdown() {
 
 function runScript() {
 	var $j = $.noConflict(true);
-
-	setupTagDropdown();
 
 	var defaults = {
 		majorVersion: 0.7,
@@ -1339,11 +1376,29 @@ function runScript() {
 			}
 		});
 
-		const tagDropdown = setupTagDropdown();
-		tagDropdown.init(document.getElementById('s-conf-add-loved'));
+		const configureDropdown = (inputElId) => {
+			setupTagDropdown({
+				inputElId
+			}).init();
+		};
+
+		const allInputElCategories = ['good', 'loved', 'performer', 'loveperf', 'newperf', 'amateur', 'loveamat', 'maleperf', 'lovemale', 'likesite', 'lovesite', 'disliked', 'hated', 'terrible', 'useless'];
+		const allInputElIds = allInputElCategories.reduce((prev, cur) => {
+			const newVal = [...prev, `s-conf-add-${cur}`, `s-conf-remove-${cur}`];
+			prev = newVal;
+			return prev;
+		}, []);
+
+		allInputElIds.forEach(id => {
+			const configureFnOnce = once(evt => {
+				configureDropdown(id);
+			});
+
+			document.getElementById(id).addEventListener('focus', configureFnOnce);
+		})
 	}
 
-	//General Purpose Funcitons
+	//General Purpose Functions
 	function addTerribleTagElement(type, holder, tag) {
 		holder.removeClass("s-disliked");
 		addTagElement(type, holder, tag);
