@@ -78,6 +78,7 @@ function setupTagDropdown(conf) {
 
 	const inputElement = document.getElementById(conf.inputElId);
 	let tagMenu;
+	let base = conf.base;
 
 	const css = `
 		#tag-highlighter-tag-menu {
@@ -129,7 +130,7 @@ function setupTagDropdown(conf) {
 
 	const debouncedAddTagMenu = debounce(removeAndAddTagMenu, 250);
 
-	const isTagMenuOpen = () => !!tagMenu;
+	const isTagMenuOpen = () => !!document.getElementById('tag-highlighter-tag-menu');
 
 	function addInputEventHandlers() {
 
@@ -137,8 +138,14 @@ function setupTagDropdown(conf) {
 		inputElement.addEventListener('keyup', (evt) => {
 
 			// Ignore escape
-			if (evt.key === 'Escape') {
+			if (evt.key === 'Escape' && isTagMenuOpen()) {
+				evt.stopPropagation();
+				tagMenu.remove();
 				return;
+			}
+
+			if (evt.key === 'Escape' && !isTagMenuOpen()) {
+				base.remove();
 			}
 
 			// if empty, remove menu
@@ -162,11 +169,11 @@ function setupTagDropdown(conf) {
 		});
 
 		// Remove menu if clicking out of input
-		inputElement.addEventListener('focusout', (evt) => {
-			if (!isTagMenuOpen()) {
+		base.on('mousedown', (evt) => {
+			if (isTagMenuOpen() && evt.target.localName !== 'li') {
 				tagMenu.remove();
 			}
-		})
+		});
 	}
 
 	function init() {
@@ -1366,21 +1373,16 @@ function runScript() {
 
 		// Escape closes ETH
 		$j(document).keyup(function (e) {
-			const tagMenu = document.getElementById('tag-highlighter-tag-menu');
-
 			if (e.key === "Escape") {
-				if (tagMenu) {
-					tagMenu.remove();
-					return;
-				}
-
 				base.remove();
 			}
 		});
 
+		// Configure the tag dropdown menus for all text inputs.
 		const configureDropdown = (inputElId) => {
 			setupTagDropdown({
-				inputElId
+				inputElId,
+				base,
 			}).init();
 		};
 
